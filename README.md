@@ -1,6 +1,6 @@
 # Adventures in permutations
 
-**The is a side quest**
+**The is a side quest :)**
 
 I was exploring Genetic Algorithms when I got to the Travelling Salesman Problem. This is a classic problem to solve with GAs. After trying some of the smaller problems, 5 to 7 cities, I wanted to test out larger problems. Maybe 20 cities
 
@@ -66,5 +66,6 @@ So if we have `3,1,2` from the left (first) list and `4,6,5` from the right (sec
 
 So I wrote a quick test program and to generate all the permutation of 12 elements by merging two sets of 6 permutations worked and only took 4.45637037 seconds! Which is somewhat slower than the 0.76926550 seconds that it took before but it worked and despite being slower has a significant advantage in that we can now split the work out to as many cpus / cores we can get our hands on. We can also stop processing and restart as we wish
 
+When looking at 20 cities (merging two sets of 10 permutations) to calculate the TSP a single work unit took 6h 17m and there are 362,880 work units. Which would take 260 years doing one work unit at a time. Or 21 years because I can run 12 work units at once (12 cores). If I co-opt my other computer we are down to 9 years (another 16 cores). More hardware = quicker results!!!!
 
-
+So success of sorts, it can be done but is still a lot of work
