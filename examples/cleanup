@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+total = 0
+
+res = File.open('full.txt', 'a')
+
+Dir['*.end'].each do |ended|
+  name = File.basename(ended, '.end')
+  File.delete(ended)
+  File.delete("tasks/#{name}.sh")
+
+  log = "logs/#{name}.log"
+
+  File.open(log, 'r').each do |line|
+    next unless line.start_with?('Best route was')
+
+    total += 1
+    res.puts line
+  end
+
+  File.delete(log)
+end
+
+puts "Total permutations this run #{total}"

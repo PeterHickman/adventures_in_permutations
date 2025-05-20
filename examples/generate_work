@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+
+def load_config
+  yaml = File.read('state.yaml')
+  YAML.load(yaml)
+end
+
+def save_config(config)
+  f = File.open('state.yaml', 'w')
+  f.puts YAML.dump(config)
+  f.close
+end
+
+def create_task(number, root)
+  f = File.new("tasks/task_#{number}.sh", 'w')
+
+  f.puts '#!/usr/bin/env bash'
+  f.puts ''
+  f.puts "./bf --root #{root} --right_size 10 --right_start 10 --tsp tsp_20_cities_symetric.txt > logs/task_#{number}.log"
+  f.puts "echo 1 > task_#{number}.end"
+  f.close
+end
+
+config = load_config
+
+c = 0
+t = 0
+
+puts "Generate work from #{config['start_from']}"
+
+File.open('left.txt', 'r').each do |line|
+  c += 1
+
+  next if c < config['start_from']
+
+  create_task(c, line.chomp)
+  t += 1
+
+  break if t >= config['limit']
+end
+
+config['start_from'] += config['limit']
+
+save_config(config)
+
+if t == 0
+  f = File.new('completed.txt', 'w')
+  f.puts 'We are done'
+  f.close
+end

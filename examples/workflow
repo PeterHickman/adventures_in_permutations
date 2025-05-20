@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+[ -d logs ] && rm -rf logs 
+mkdir logs
+
+[ -d tasks ] && rm -rf tasks
+mkdir tasks
+
+[ -e completed.txt ] && rm completed.txt
+
+[ -e full.txt ] && rm full.txt
+
+echo `date`
+
+while [ ! -e "completed.txt" ];
+do
+  ./generate_work
+  find tasks -type f -name "task_*.sh" | xargs -L 1 -P 12 bash
+  ./cleanup
+  echo `date`
+done

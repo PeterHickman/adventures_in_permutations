@@ -1,0 +1,12 @@
+5 element in 0.00001658 seconds
+6 element in 0.00000487 seconds
+7 element in 0.00001596 seconds
+8 element in 0.00010342 seconds
+9 element in 0.00083308 seconds
+10 element in 0.00786821 seconds
+11 element in 0.06768887 seconds
+12 element in 0.76926550 seconds
+13 element in 10.05410679 seconds
+14 element in 142.34671954 seconds
+15 element in 2127.33908621 seconds
+16 elements in 33905.09084608 seconds
